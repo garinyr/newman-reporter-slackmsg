@@ -36,7 +36,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
     ]`
   return jsonminify(`
     {
-        "channel": "${channel}",
+        "channel": "${environment}",
         "blocks": [
             {
                 "type": "divider"
@@ -250,6 +250,7 @@ async function send(url, message, token) {
   let result;
   try {
     result = await axios(payload);
+    console.info(`Success sending message to slack`);
   } catch (e) {
     result = false;
     console.error(`Error in sending message to slack ${e}`);
